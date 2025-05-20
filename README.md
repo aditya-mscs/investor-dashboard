@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Investor Dashboard
 
-## Getting Started
+A full-stack TypeScript web application built with **Next.js App Router**, **PostgreSQL**, **Jest**, and **React Testing Library**, designed to allow partners to securely input investor details and upload documents.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+- Submit investor details via a form
+- File uploads with progress (supports files > 3MB)
+- Authentication using Bearer token
+- Detect and update existing investor by SSN
+- PostgreSQL for relational data storage
+- RESTful API built with Next.js App Router
+- Fully tested using Jest + React Testing Library
+
+---
+
+## 🗂 Project Structure
+```
+📁 src
+ ├── app             # Next.js app router pages/api
+ │   ├── api         # Backend API logic (POST/GET investors)
+ │   ├── page.tsx    # Main UI page
+ │   └── __tests__   # Jest test cases for the UI
+ ├── db
+ │   ├── pool.ts     # DB connection using pg
+ │   └── seed.ts     # Create investors table
+└── public/uploads   # Stores uploaded files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧰 Prerequisites
+- Node.js (18+ recommended)
+- PostgreSQL installed and running
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚙️ Environment Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repo**
+```bash
+git clone <repo-url>
+cd investor-dashboard
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Create `.env` file**
+```env
+DB_USER=your_user
+DB_HOST=localhost
+DB_NAME=investor_dashboard
+DB_PASSWORD=your_password
+DB_PORT=5432
+API_AUTH_TOKEN=secure-mock-token
+```
 
-## Deploy on Vercel
+4. **Seed the Database**
+```bash
+npm run db:seed
+```
+> This will create the `investors` table using `src/db/seed.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Start the Dev Server**
+```bash
+npm run dev
+```
+> Visit [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧪 Running Tests
+
+1. **Run All Tests**
+```bash
+npm run test
+```
+
+2. **Test Structure**
+- `src/app/__tests__/page.test.tsx`: Renders UI, simulates form submission, handles errors and success.
+
+---
+
+## ✅ API Endpoints
+
+### POST /api/investor
+- Upload investor data + file
+- Requires Bearer token in header
+- Detects existing SSN and updates address/file
+
+### GET /api/investor
+- Returns count of total investors
+
+### DELETE /api/investor?ssn=...
+- Deletes investor by SSN
+
+---
+
+## 📄 Investor Fields
+- firstName
+- lastName
+- dob
+- phone
+- street
+- state
+- zip
+- ssn (used to detect duplicates)
+- document (uploaded file)
+
+---
+
+## 🧠 Notes
+- Uploaded files go to `public/uploads`
+- Input validation (phone, email, file size)
+- JWT auth can be integrated later
+
+---
+
+## 🔧 Scripts
+```json
+"dev": "next dev",
+"build": "next build",
+"start": "next start",
+"test": "jest",
+"db:seed": "ts-node src/db/seed.ts"
+```
+
+---
+
+## 📫 Questions?
+Email: aditya.mscs@gmail.com or open an issue in the repo.

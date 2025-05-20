@@ -30,7 +30,6 @@ export default function Home() {
   const resetForm = () => {
     setForm(Object.fromEntries(Object.keys(form).map(key => [key, ''])) as typeof form);
     setFile(null);
-    setProgress(0);
     setError(null);
     formRef.current?.reset();
   };
