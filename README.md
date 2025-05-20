@@ -59,9 +59,16 @@ DB_PORT=5432
 API_AUTH_TOKEN=secure-mock-token
 ```
 
-4. **Seed the Database**
+4. **Start PostgreSQL (macOS using brew)**
 ```bash
-npm run db:seed
+npm run startdb
+```
+> This starts PostgreSQL using brew services
+
+
+**Seed the Database**
+```bash
+npm run seeddb
 ```
 > This will create the `investors` table using `src/db/seed.ts`
 
@@ -126,7 +133,7 @@ npm run test
 "build": "next build",
 "start": "next start",
 "test": "jest",
-"db:seed": "ts-node src/db/seed.ts"
+"seeddb": "ts-node src/db/seed.ts"
 ```
 
 ---
