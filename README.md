@@ -1,3 +1,9 @@
+
+<img width="1433" alt="Screenshot 2025-05-20 at 7 01 57 PM" src="https://github.com/user-attachments/assets/b31bd2b2-f204-42d1-b5eb-2084a3f61dad" />
+
+<img width="1434" alt="Screenshot 2025-05-20 at 7 03 03 PM" src="https://github.com/user-attachments/assets/ea5f5213-fa80-4ed5-a136-97694bdceb75" />
+
+
 # Investor Dashboard
 
 A full-stack TypeScript web application built with **Next.js App Router**, **PostgreSQL**, **Jest**, and **React Testing Library**, designed to allow partners to securely input investor details and upload documents.
